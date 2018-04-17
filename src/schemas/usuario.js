@@ -4,10 +4,7 @@ const Schema = mongoose.Schema;
 
 const UsuarioEschema = new Schema({
   usuario: String,
-  nombre: String,
-  apellido: String,
-  rutaLogo: String,
-  seguidores: []
+  seguidores: [],
   creacion: {
     usuario: String,
     fecha: { type: Date, default: Date.now },

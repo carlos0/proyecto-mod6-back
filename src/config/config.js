@@ -16,7 +16,7 @@ module.exports = {
   // Datos para la conexión a Solr
   mongo: {
     host: 'localhost',
-    port: 37017,
+    port: 27017,
     database: 'practica',
   },
   puerto: 4000,

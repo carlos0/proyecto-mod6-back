@@ -1,10 +1,11 @@
-/* eslint-disable */
-import bodyParser from 'body-parser';
-import express from 'express';
-import cors from 'cors';
-import morgan from 'morgan';
-import helmet from 'helmet';
-import logger from './logger';
+/* eslint prefer-rest-params: 0 */
+/* eslint func-names: 0 */
+const bodyParser = require('body-parser');
+const express = require('express');
+const cors = require('cors');
+const helmet = require('helmet');
+const logger = require('./logger');
+
 
 module.exports = (app) => {
   // Constante que almacena la congifuracion.
@@ -17,13 +18,7 @@ module.exports = (app) => {
   app.set('secretAGETIC', configuracion.jwtSecret);
 
   // Realiza el uso de morgan para generar logs.
-  app.use(morgan('common', {
-    stream: {
-      write: (message) => {
-        logger.info(message);
-      },
-    },
-  }));
+
 
   app.use(helmet());
 

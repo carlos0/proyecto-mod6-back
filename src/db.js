@@ -1,31 +1,26 @@
 /* eslint no-console: 0 */
+/* eslint-disable-line import/no-dynamic-require */
+
 const mongoose = require('mongoose');
+
 const fs = require('fs');
 const path = require('path');
-const config = require('./configig/configig');
+const config = require('./config/config');
 
 let db = null;
 
-const dbInitMongo = () => {
+module.exports = () => {
   if (!db) {
-    if (config.mongo.user === '' || config.mongo.user === null || config.mongo.user === undefined) {
-      mongoose.connect(`mongodb://${config.mongo.host}:${config.mongo.port}/${config.mongo.database}`);
-    } else {
-      mongoose.connect(`mongodb://${config.mongo.user}:${config.mongo.pass}@${config.mongo.host}:${config.mongo.port}/${config.mongo.database}`);
-    }
+    mongoose.connect(`mongodb://${config.mongo.host}:${config.mongo.port}/${config.mongo.database}`);
     db = {
       models: {},
       mongoose,
     };
     const dir = path.join(__dirname, 'schemas');
     fs.readdirSync(dir).forEach((file) => {
-      const schema = require(path.join(dir, file)); // eslint-disable-line import/no-dynamic-require
+      const schema = require(path.join(dir, file));
       db.models[schema.model.modelName] = schema.model;
     });
   }
   return db;
-};
-
-module.exports = {
-  dbInitMongo,
 };

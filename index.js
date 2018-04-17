@@ -1,7 +1,7 @@
 /* eslint no-console: 0 */
-import express from 'express';
-import consign from 'consign';
-import bodyParser from 'body-parser';
+const express = require('express');
+const consign = require('consign');
+const bodyParser = require('body-parser');
 
 global._path = __dirname;
 const app = express();
